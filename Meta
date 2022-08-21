@@ -1,0 +1,27 @@
+[bpan]
+name = md2man
+version = 0.1.0
+abstract = Markdown to man page converter
+license = MIT
+copyright = 2022
+
+site = $repo
+repo = https://github.com/bpan-org/md2man
+bug = $repo/issues/
+irc = irc.libera.chat/bpan
+
+[author]
+name = Ingy döt Net
+email = ingy@ingy.net
+github = ingydotnet
+libera = ingydotnet
+twitter = ingydotnet
+site = https://github.com/ingydotnet
+
+[require "bpan"]
+prelude-bash = 0.1.0+
+getopt-bash = 0.1.0+
+
+[require "commands"]
+pandoc = 2.9+
+perl = 5.14+
