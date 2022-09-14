@@ -3,7 +3,8 @@
 VERSION=0.1.0
 
 root=$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd -P)
-source "$root/.bpan/lib/bpan.bash" --prelude
+source "$root/.bpan/lib/bpan.bash"
+bpan:use prelude
 
 main() (
   pandoc --from=gfm --to=json |
