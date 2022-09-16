@@ -1,3 +1,7 @@
+[version "0.1.5"]
+date = Fri Sep 16 01:31:49 PM EDT 2022
+done = Fix chmod on bin/md2man again
+
 [version "0.1.4"]
 date = Fri Sep 16 11:27:33 AM EDT 2022
 done = Fix chmod on bin/md2man
