@@ -19,9 +19,14 @@ twitter = ingydotnet
 site = https://github.com/ingydotnet
 
 [require "bpan"]
-prelude-bash = 0.1.0+
-getopt-bash = 0.1.0+
+# getopt-bash = 0.1.0+
 
 [require "commands"]
 pandoc = 2.9+
 perl = 5.14+
+
+[file "bpan"]
+update = Makefile
+update = test/init
+update = test/00-shellcheck.t
+update = ReadMe.md doc/md2man.md
