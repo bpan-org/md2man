@@ -27,18 +27,19 @@ site = http://ingy.net
 github = ingydotnet
 
 [require "package"]
-# getopt-bash = 0.1.0+
+getopt-bash = 9.1.0+
 
 [require "commands"]
 pandoc = 2.9+
 perl = 5.14+
 
 [update]
-template = License
-template = Makefile
-template = ReadMe.md doc/md2man.md
-template = test/00-shellcheck.t
-template = test/init
-manpage = doc/md2man.md
+package = getopt-bash
+file = License
+file = Makefile
+file = ReadMe.md doc/md2man.md
+file = test/00-shellcheck.t
+file = test/init
+man1 = doc/md2man.md
 
 # vim: ft=gitconfig:
