@@ -95,9 +95,27 @@ sub fmt {
     for my $node (@$nodes) {
         my ($t, $c) = $self->tc($node);
         my $method = "fmt_$t";
-        $o .= $self->$method($c);
+        if ($self->can($method)) {
+            $o .= $self->$method($c);
+        }
+        else {
+            $self->error($t, $c);
+        }
     }
     return $o;
+}
+
+sub error {
+    my ($self, $type, $content) = @_;
+    warn "No md2man formatter for pandoc node type '$type'.\n";
+    warn "\nData for this node was:\n\n";
+    if (eval "require XXXX; 1") {
+        XXX:XXX($content);
+    }
+    require Data::Dumper;
+    no warnings 'once';
+    $Data::Dumper::Terse = 1;
+    die Data::Dumper::Dumper($content);
 }
 
 sub fmt_header {
