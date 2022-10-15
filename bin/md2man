@@ -225,11 +225,24 @@ sub fmt_plain {
 }
 
 sub fmt_horizontalrule {
-    "=for html <hr/>\n\n";
+    return "=for html <hr/>\n\n";
 }
 
 sub fmt_softbreak {
-    ' ';
+    return ' ';
+}
+
+sub fmt_rawblock {
+    my ($self, $rawblock) = @_;
+    if ($rawblock->[0] eq 'html' and
+        $rawblock->[1] =~ /^<!--/
+    ) {
+        return '';
+    } else {
+        use Data::Dumper;
+        die "Don't know how to format 'rawblock':\n" .
+          Data::Dumper::Dumper($rawblock);
+    }
 }
 
 $o->run(@ARGV);

@@ -34,7 +34,6 @@ pandoc = 2.9+
 perl = 5.14+
 
 [update]
-package = getopt-bash
 file = License
 file = Makefile
 file = ReadMe.md doc/md2man.md
