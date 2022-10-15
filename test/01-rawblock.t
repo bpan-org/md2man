@@ -13,4 +13,8 @@ foo
 
 is "$rc" 0 "HTML comments are ok"
 
+if [[ $rc -ne 0 ]]; then
+  diag "$got"
+fi
+
 done-testing
