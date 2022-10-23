@@ -1,3 +1,7 @@
+[version "0.1.15"]
+date = Sun Oct 23 03:12:40 PM PDT 2022
+done = Remove ronn support for now
+
 [version "0.1.14"]
 date = Sun Oct 23 02:42:13 PM PDT 2022
 done = Use portable mktemp command
