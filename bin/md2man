@@ -14,8 +14,8 @@ Example:
 
 Options:
 --
-pandoc        Use 'pandoc' to format Markdown
-ronn          Use 'ronn' to format Markdown
+# pandoc        Use 'pandoc' to format Markdown
+# ronn          Use 'ronn' to format Markdown
 pod           Output POD instead of nroff
 man           Show output in 'man' manpage viewer
 
@@ -23,6 +23,8 @@ h,help        Show the command summary
 version       Display $app version
 x,debug       Print lots of debugging info
 "
+
+# XXX Currently unable to produce readable manpages with ronn.
 
 main() (
   getopt "$@"
@@ -32,28 +34,30 @@ main() (
     exit
   fi
 
-  if $option_pandoc && $option_ronn; then
-    error "Using both --pandoc and --ronn doesn't make sense"
-  fi
+#   if $option_pandoc && $option_ronn; then
+#     error "Using both --pandoc and --ronn doesn't make sense"
+#   fi
 
   (
     if $option_pod; then
       convert:pod
-    elif $option_pandoc; then
-      convert:pandoc
-    elif $option_ronn; then
-      convert:ronn
+#     elif $option_pandoc; then
+#       convert:pandoc
+#     elif $option_ronn; then
+#       convert:ronn
     else
-      if +is-cmd pandoc; then
-        convert:pandoc
-      elif +is-cmd ronn; then
-        convert:ronn
-      else
-        die "$app requires either pandoc or ronn..."
-      fi
+      +is-cmd pandoc ||
+        die "md2man requires pandoc"
+#       if +is-cmd pandoc; then
+#         convert:pandoc
+#       elif +is-cmd ronn; then
+#         convert:ronn
+#       else
+#         die "$app requires either pandoc or ronn..."
+#       fi
     fi
   ) | (
-    if $option_man; then
+    if $option_man && ! $option_pod; then
       file=$(mktemp /tmp/XXXXXX.1)
       +trap "rm $file"
       set -x
@@ -73,7 +77,7 @@ convert:pandoc() (
 )
 
 convert:ronn() (
-  ronn --roff
+  ronn -r
 )
 
 convert:pod() (
@@ -131,6 +135,8 @@ sub fmt_pod {
     # Ensure blank line before pod directive.
     # From a bug seen on a mac.
     $text =~ s/([^\n]\n)(=\w+( |$))/$1\n$2/mg;
+
+    $text =~ s/\n{3,}/\n\n/g;
 
     return $self->fix_name_heading($text);
 }
@@ -262,7 +268,7 @@ sub fmt_codeblock {
     my ($x, $code) = @$args;
     my $o = "$code\n";
     $o =~ s/^(.)/    $1/gm;
-    return $o;
+    return "$o\n";
 }
 
 sub make_list {
