@@ -54,7 +54,7 @@ main() (
     fi
   ) | (
     if $option_man; then
-      file=$(mktemp --suffix=.1)
+      file=$(mktemp /tmp/XXXXXX.1)
       +trap "rm $file"
       set -x
       cat > "$file"
