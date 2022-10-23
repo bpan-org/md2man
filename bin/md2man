@@ -128,9 +128,9 @@ sub fmt_pod {
         $self->fmt($ast->{blocks}) .
         "=cut\n";
 
-    # Add blank line in a place where sometimes missing.
+    # Ensure blank line before pod directive.
     # From a bug seen on a mac.
-    $text =~ s/^(     *\S.*\n)(=item )/$1\n$2/mg;
+    $text =~ s/([^\n]\n)(=\w+( |$))/$1\n$2/mg;
 
     return $self->fix_name_heading($text);
 }
