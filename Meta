@@ -27,13 +27,13 @@ site = http://ingy.net
 github = ingydotnet
 
 [require "package"]
-getopt-bash = 9.1.0+
 
 [require "commands"]
-pandoc = 2.9+
 perl = 5.14+
 
 [update]
+package = bashplus
+package = getopt-bash
 file = License
 file = Makefile
 file = ReadMe.md doc/md2man.md

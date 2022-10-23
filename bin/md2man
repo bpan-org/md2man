@@ -3,15 +3,82 @@
 VERSION=0.1.10
 
 root=$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd -P)
-source "$root/.bpan/lib/bpan.bash" --
+source "$root/.bpan/lib/bpan.bash" --app
+bpan:source bashplus
+bpan:source getopt "\
+$app [<opt...>]
 
-# TODO Support --ronn
+Example:
+
+  $app < foo.md > man/man1/foo.1
+
+Options:
+--
+pandoc        Use 'pandoc' to format Markdown
+ronn          Use 'ronn' to format Markdown
+pod           Output POD instead of nroff
+man           Show output in 'man' manpage viewer
+
+h,help        Show the command summary
+version       Display $app version
+x,debug       Print lots of debugging info
+"
 
 main() (
+  getopt "$@"
+
+  if $option_version; then
+    echo "$app v$VERSION"
+    exit
+  fi
+
+  if $option_pandoc && $option_ronn; then
+    error "Using both --pandoc and --ronn doesn't make sense"
+  fi
+
+  (
+    if $option_pod; then
+      convert:pod
+    elif $option_pandoc; then
+      convert:pandoc
+    elif $option_ronn; then
+      convert:ronn
+    else
+      if +is-cmd pandoc; then
+        convert:pandoc
+      elif +is-cmd ronn; then
+        convert:ronn
+      else
+        die "$app requires either pandoc or ronn..."
+      fi
+    fi
+  ) | (
+    if $option_man; then
+      file=$(mktemp --suffix=.1)
+      +trap "rm $file"
+      set -x
+      cat > "$file"
+      man "$file"
+    else
+      cat
+    fi
+  )
+)
+
+convert:pandoc() (
   pandoc --from=gfm --to=json |
     pandoc-ast-to-pod |
     pod2man |
     fix-nroff
+)
+
+convert:ronn() (
+  ronn --roff
+)
+
+convert:pod() (
+  pandoc --from=gfm --to=json |
+    pandoc-ast-to-pod
 )
 
 fix-nroff() (
