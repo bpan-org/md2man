@@ -1,3 +1,7 @@
+[version "0.1.11"]
+date = Sun Oct 23 12:54:28 PM PDT 2022
+done = Add command options --pandoc --ronn --pod etc
+
 [version "0.1.10"]
 date = Sat Oct 15 11:12:29 AM PDT 2022
 done = Print output when test/01-rawblock.t fails
