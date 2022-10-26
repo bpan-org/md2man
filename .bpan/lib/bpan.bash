@@ -20,6 +20,8 @@ bpan:main() {
     set -o pipefail
     shopt -s inherit_errexit
   } 2>/dev/null || true
+  # 'set -u' is untenable in 4.0
+  [[ $BASH_VERSION == 4.0.* ]] && set +o nounset
 
   # 'source bpan.bash ...' can take arguments:
   local arg
@@ -32,7 +34,7 @@ bpan:main() {
       # Set the 'app', 'App', and 'APP' variables:
       --app)
         app=$(basename "$0")
-        if ( shopt -s compat31 2>/dev/null ); then  # bash 4.0+
+        if ( shopt -s compat32 2>/dev/null ); then  # bash 4.0+
           App=${app^}
           APP=${app^^}
         else
@@ -69,7 +71,7 @@ bpan:source() {
   [[ $dir == "${BPAN_ROOT%%/}" ]] ||
     dir=${dir%/.bpan}
   if [[ -f $dir/.bpan/lib/$name.bash ]]; then
-    source "$dir/.bpan/lib/$name.bash" "$@"
+    source "$dir/.bpan/lib/$name.bash" "${@:+$@}"
     return
   fi
 

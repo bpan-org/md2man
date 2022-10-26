@@ -1,3 +1,7 @@
+[version "0.1.16"]
+date = Tue Oct 25 05:14:44 PM PDT 2022
+done = Fix bug where md2man does nothing
+
 [version "0.1.15"]
 date = Sun Oct 23 03:12:40 PM PDT 2022
 done = Remove ronn support for now
