@@ -20,8 +20,8 @@ bpan:main() {
     set -o pipefail
     shopt -s inherit_errexit
   } 2>/dev/null || true
-  # 'set -u' is untenable in 4.0
-  [[ $BASH_VERSION == 4.0.* ]] && set +o nounset
+  # -u works poorly with arrays until Bash 4.4
+  ( shopt -s compat43 2>/dev/null ) || set +o nounset
 
   # 'source bpan.bash ...' can take arguments:
   local arg
@@ -71,7 +71,7 @@ bpan:source() {
   [[ $dir == "${BPAN_ROOT%%/}" ]] ||
     dir=${dir%/.bpan}
   if [[ -f $dir/.bpan/lib/$name.bash ]]; then
-    source "$dir/.bpan/lib/$name.bash" "${@:+$@}"
+    source "$dir/.bpan/lib/$name.bash" "$@"
     return
   fi
 

@@ -4,6 +4,9 @@ source test/init
 
 export PATH=$PWD/bin:$PATH
 
++is-cmd pandoc ||
+  plan skip-all "Test requires pandoc to be installed"
+
 pod=$(md2man --pod < <(cat <<'...'
 * foo
   ```

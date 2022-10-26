@@ -108,7 +108,7 @@ print $text;
 )
 
 pandoc-ast-to-pod() (
-  "$(command -v perl)" <(cat <<'...'
+  IFS='' read -r -d '' perl  <<'...' || true
 use strict;
 use warnings;
 
@@ -325,7 +325,8 @@ sub fmt_rawblock {
 
 $o->run(@ARGV);
 ...
-)
+
+  "$(command -v perl)" -e "$perl"
 )
 
 main "$@"
