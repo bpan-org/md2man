@@ -1,3 +1,7 @@
+[version "0.1.17"]
+date = Wed Oct 26 07:13:20 AM PDT 2022
+done = Works with Bash 3.2+
+
 [version "0.1.16"]
 date = Tue Oct 25 05:14:44 PM PDT 2022
 done = Fix bug where md2man does nothing
