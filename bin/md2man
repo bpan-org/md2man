@@ -48,6 +48,7 @@ main() (
     else
       +is-cmd pandoc ||
         die "md2man requires pandoc"
+      convert:pandoc
 #       if +is-cmd pandoc; then
 #         convert:pandoc
 #       elif +is-cmd ronn; then
