@@ -1,5 +1,5 @@
 [bpan]
-api-version = 1
+version = 0.1.75
 
 [package]
 name = md2man
@@ -26,13 +26,13 @@ site = http://ingy.net
 [owner]
 github = ingydotnet
 
-[require "package"]
-
 [require "commands"]
 perl = 5.14+
 
 [update]
-package = bashplus
+package = bashplus:@
+package = bashplus:@/err
+package = bashplus:@/sys
 package = getopt-bash
 file = License
 file = Makefile

@@ -4,7 +4,7 @@ source test/init
 
 export PATH=$PWD/bin:$PATH
 
-+is-cmd pandoc ||
++sys:is-cmd pandoc ||
   plan skip-all "Test requires pandoc to be installed"
 
 try md2man <<...

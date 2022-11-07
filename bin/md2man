@@ -2,9 +2,9 @@
 
 VERSION=0.1.17
 
-root=$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd -P)
+root=$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd -P)
 source "$root/.bpan/lib/bpan.bash" --app
-bpan:source bashplus
+bpan:source bashplus --sys --err
 bpan:source getopt "\
 $app [<opt...>]
 
@@ -46,12 +46,12 @@ main() (
 #     elif $option_ronn; then
 #       convert:ronn
     else
-      +is-cmd pandoc ||
+      +sys:is-cmd pandoc ||
         die "md2man requires pandoc"
       convert:pandoc
-#       if +is-cmd pandoc; then
+#       if +sys:is-cmd pandoc; then
 #         convert:pandoc
-#       elif +is-cmd ronn; then
+#       elif +sys:is-cmd ronn; then
 #         convert:ronn
 #       else
 #         die "$app requires either pandoc or ronn..."
