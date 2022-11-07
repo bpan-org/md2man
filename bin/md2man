@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=0.1.17
+VERSION=0.1.18
 
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd -P)
 source "$root/.bpan/lib/bpan.bash" --app

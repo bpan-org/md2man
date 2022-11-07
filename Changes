@@ -1,3 +1,7 @@
+[version "0.1.18"]
+date = Mon Nov  7 03:53:57 PM PST 2022
+done = Various updates
+
 [version "0.1.17"]
 date = Wed Oct 26 07:13:20 AM PDT 2022
 done = Works with Bash 3.2+
