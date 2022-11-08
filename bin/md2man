@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=0.1.18
+VERSION=0.1.19
 
 root=$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd -P)
 [[ $root ]] || exit
