@@ -4,22 +4,13 @@
 # * Many are improved versions of existing builtins/commands.
 
 
-bashplus:version() ( echo '0.1.46' )
+bashplus:version() ( echo '0.1.57' )
 
 bashplus:main() {
-  bashplus_lib=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
-
-  bashplus_path=("$bashplus_lib")
-  if [[ ${BPAN_INSTALL-} ]]; then
-    bashplus_path+=("$BPAN_INSTALL/lib" "$BPAN_INSTALL/src")
-  elif [[ $BPAN_ROOT ]]; then
-    bashplus_path+=("$BPAN_ROOT/local/lib" "$BPAN_ROOT/local/src")
-  fi
-
   local arg
   for arg; do
-    if [[ $arg =~ ^--([a-z]+)$ ]]; then
-      +source bashplus/"${arg#--}"
+    if [[ $arg =~ ^\+([a-z]+)$ ]]; then
+      +source bashplus/"${arg#+}"
 
     elif [[ $arg =~ ^--bash=([345])\.([0-4])\+?$ ]]; then
       local n1=${BASH_REMATCH[1]} n2=${BASH_REMATCH[2]}
@@ -42,15 +33,20 @@ bashplus:main() {
   set "${BASHPLUS_DEBUG_BASH_X:-+x}"
   local lib=${1?}; shift
 
+  local BASHPLUS_PATH=${BASHPLUS_PATH:-$(
+    cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd -P
+  )}
+
   local path
-  for path in "${bashplus_path[@]}" $(IFS=:; echo ${BASHPLUS_PATH-}); do
+  for path in $(IFS=:; echo ${BASHPLUS_PATH-}); do
     if [[ -f $path/$lib.bash ]]; then
       source "$path/$lib.bash" "$@"
       return
     fi
   done
 
-  die "Unable to '+source $lib'"
+  die "Unable to '+source $lib'" \
+    "Not found in BASHPLUS_PATH='$BASHPLUS_PATH'"
 }
 
 # A simple 'die' function. Full featured version is in lib/bashplus/err.bash
