@@ -3,7 +3,7 @@ version = 0.1.86
 
 [package]
 name = md2man
-version = 0.1.22
+version = 0.1.23
 title = Markdown to man page converter
 license = MIT
 copyright = 2022
