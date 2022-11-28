@@ -1,1 +1,43 @@
-../Meta
+[bpan]
+version = 0.1.86
+
+[package]
+name = md2man
+version = 0.1.22
+title = Markdown to man page converter
+license = MIT
+copyright = 2022
+tag = man markdown
+
+repo = https://github.com/bpan-org/md2man
+branch = main
+site = $package.repo
+bug = $package.repo/issues/
+irc = irc.libera.chat/bpan
+
+[author "ingydotnet"]
+name = Ingy döt Net
+email = ingy@ingy.net
+host = github
+user = ingydotnet
+twitter = ingydotnet
+irc = ingy@irc.libera.chat
+matrix = @ingy:yaml.io
+site = http://ingy.net
+
+[require "commands"]
+perl = 5.14+
+
+[update]
+package = bashplus:@
+package = bashplus:@/err
+package = bashplus:@/sys
+package = getopt-bash
+file = License
+file = Makefile
+file = ReadMe.md doc/md2man.md
+file = test/00-shellcheck.t
+file = test/init
+man1 = doc/md2man.md
+
+# vim: ft=gitconfig:
