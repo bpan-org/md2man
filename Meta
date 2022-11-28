@@ -7,6 +7,7 @@ version = 0.1.21
 title = Markdown to man page converter
 license = MIT
 copyright = 2022
+tag = man markdown
 
 repo = https://github.com/bpan-org/md2man
 branch = main
