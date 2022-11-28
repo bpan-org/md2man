@@ -1,3 +1,7 @@
+[version "0.1.22"]
+date = Sun Nov 27 06:57:45 PM PST 2022
+done = Add package.tag to config
+
 [version "0.1.21"]
 date = Sun Nov 27 11:28:54 AM PST 2022
 done = Update .bpan/config author.user
