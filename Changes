@@ -1,3 +1,7 @@
+[version "0.1.24"]
+date = Mon Dec  5 12:26:04 PM PST 2022
+done = Change package.repo to package.source
+
 [version "0.1.23"]
 date = Sun Nov 27 07:12:25 PM PST 2022
 done = Move Meta to .bpan/config
