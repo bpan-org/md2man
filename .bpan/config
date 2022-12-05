@@ -9,8 +9,10 @@ license = MIT
 copyright = 2022
 tag = man markdown
 
-repo = https://github.com/bpan-org/md2man
+owner = bpan-org
+source = https://github.com/$package.owner/$package.name
 branch = main
+
 site = $package.repo
 bug = $package.repo/issues/
 irc = irc.libera.chat/bpan
