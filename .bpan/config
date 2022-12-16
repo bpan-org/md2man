@@ -1,10 +1,10 @@
 [bpan]
-version = 0.1.97
-updated = 2022-12-13-13-04-05
+version = 0.1.100
+updated = 2022-12-15T19:44:02Z
 
 [package]
 name = md2man
-version = 0.1.26
+version = 0.1.27
 title = Markdown to man page converter
 license = MIT
 copyright = 2022
