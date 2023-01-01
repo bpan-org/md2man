@@ -1,3 +1,7 @@
+[version "0.1.29"]
+date = 2023-01-01T13:23:25Z
+done = Update .bpan/config
+
 [version "0.1.28"]
 date = 2022-12-21T23:09:36Z
 done = Run 'bpan update'
