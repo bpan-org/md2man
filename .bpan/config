@@ -3,14 +3,13 @@ version = 0.1.105
 updated = 2022-12-21T23:09:37Z
 
 [package]
-name = md2man
+id = github:bpan-org/md2man
 version = 0.1.28
 title = Markdown to man page converter
 license = MIT
-copyright = 2022
-type = bash-bin
+copyright = 2022-2023
+type = bash:bin
 
-bug = https://github.com/bpan-org/md2man/issues/
 irc = irc.libera.chat/bpan
 
 [author "github:ingydotnet"]
@@ -19,7 +18,7 @@ email = ingy@ingy.net
 irc = ingy@irc.libera.chat
 matrix = @ingy:yaml.io
 
-[require "commands"]
+[require "command"]
 perl = 5.14+
 
 [update]
